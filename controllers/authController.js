@@ -5,6 +5,7 @@ import prisma from "../config/prisma.js";
 
 
 
+
 export const register = async (req, res) => {
   const { name, email, password } = req.body;
 
