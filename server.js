@@ -2,7 +2,7 @@ import "dotenv/config";
 import express from "express";
 import { register, login } from "./controllers/authController.js";
 import {  getMe } from "./controllers/usersController.js";
-import authMiddleware from "./middleware/auth.middleware.js";
+
 
 
 const app = express();
