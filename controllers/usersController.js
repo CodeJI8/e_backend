@@ -1,6 +1,6 @@
 import prisma from "../config/prisma.js";
 
-export const getMe = async (req, res) => {
+export const getProfile = async (req, res) => {
 
     try {
 
