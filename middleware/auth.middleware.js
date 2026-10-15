@@ -14,7 +14,7 @@ const authMiddleware = (req, res, next) => {
   try {
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 
-    req.user = decodedToken;
+    req.user = decodedToken;  //ei req user  + userID jeita auth controller e dichi 
 
     next();
   } catch (error) {

@@ -1,17 +1,25 @@
 import "dotenv/config";
 import express from "express";
-import { register, login } from "./controllers/authController.js";
-import {  getProfile } from "./controllers/usersController.js";
-import authMiddleware from "./middleware/auth.middleware.js";
 
+import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import passwordResetRoutes from "./routes/passwordResetRoutes.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
 
 const app = express();
+
 app.use(express.json());
+app.use("/uploads", express.static("uploads"));
 
+app.get("/", (req, res) => {
+  res.json({ status: "the site online" });
+});
 
-// app.get("/", (req, res) => res.json({ status: "the site online" }));
-app.post("/login", login);
-app.post("/register",register);
-app.get("/getProfile", authMiddleware,  getProfile);
+app.use("/", authRoutes);
+app.use("/", userRoutes);
+app.use("/", passwordResetRoutes);
+app.use("/categories", categoryRoutes);
 
-app.listen(process.env.PORT || 5000, () => console.log("Server running"));
+app.listen(process.env.PORT || 5000, () => {
+  console.log("Server running");
+});
