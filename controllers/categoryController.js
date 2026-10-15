@@ -2,8 +2,10 @@ import prisma from "../config/prisma.js";
 import { sendResponse, serverError } from "../utils/response.js";
 export const createCategory = async(req, res) =>{
 
-    const {name  , imageUrl , sortOrder , isActive , parentId } = req.body;
-
+    const {name  ,  sortOrder , isActive , parentId } = req.body;
+const imageUrl = req.file
+  ? `/uploads/${req.file.filename}`
+  : null;
 
 
     try {
