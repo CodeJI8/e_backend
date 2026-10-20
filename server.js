@@ -5,6 +5,7 @@ import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import passwordResetRoutes from "./routes/passwordResetRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use("/", authRoutes);
 app.use("/", userRoutes);
 app.use("/", passwordResetRoutes);
 app.use("/categories", categoryRoutes);
+app.use("/products", productRoutes);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("Server running");
