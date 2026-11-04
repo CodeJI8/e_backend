@@ -16,6 +16,7 @@ export const sendResponse = (
 
 
 
-export const serverError = (res) => {
+export const serverError = (res, error) => {
+    console.error("Server error:", error);
     return sendResponse(res, 500, "Internal server error");
 };

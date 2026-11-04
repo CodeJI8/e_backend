@@ -4,6 +4,7 @@
 
     import {
         createProducts,
+        getProductsById,
         getProducts,
         editProduct,
         deleteProducts
@@ -14,7 +15,7 @@
     router.post("/", authMiddleware, upload.array("images", 5), createProducts);
 
     router.get("/", getProducts);
-    // router.get("/:id", getProductById);
+    router.get("/:id", getProductsById);
 
     router.patch("/:id", authMiddleware, upload.array("images", 5), editProduct);
     router.delete("/:id", authMiddleware, deleteProducts);

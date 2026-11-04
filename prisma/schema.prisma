@@ -182,3 +182,11 @@ model OrderItem {
   @@index([orderId])
   @@index([productId])
 }
+
+
+model StripeEvent {
+  id            Int      @id @default(autoincrement())
+  stripeEventId String   @unique
+  type          String
+  createdAt     DateTime @default(now())
+}

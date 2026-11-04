@@ -1,5 +1,4 @@
 
-import { name } from "nodemailer/lib/package-info.js";
 import prisma from "../config/prisma.js";
 import { sendResponse, serverError } from "../utils/response.js";
 
@@ -67,7 +66,8 @@ const where = { isActive: true };
                where: {
                     isActive: true
                 },
-                skip, take: limit, orderBy: { id: "asc" }
+                skip, take: limit, orderBy: { id: "asc" },
+                include: { images: true }
             }),
 
              prisma.product.count({ where }),
@@ -87,6 +87,38 @@ const where = { isActive: true };
   }
 
 }
+
+
+
+export const getProductsById = async (req, res) => {
+    const id = Number(req.params.id);
+    if (!Number.isSafeInteger(id) || id < 1) {
+        return sendResponse(res, 400, "Invalid product id");
+    }
+
+    try {
+        const data = await prisma.product.findUnique({
+            where: { id },
+            include: {
+                images: true,
+                categories: {
+                    include: {
+                        category: true
+                    }
+                }
+            }
+        })
+
+        if (!data) {
+            return sendResponse(res, 404, "Product not found");
+        }
+
+        return sendResponse(res, 200, "Product fetched successfully", data);
+    } catch (error) {
+        console.error("Error fetching product:", error);
+        return serverError(res);
+    }
+};
 export const editProduct = async (req, res) => {
     try {
         const id = Number(req.params.id);
