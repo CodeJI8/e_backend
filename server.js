@@ -1,6 +1,6 @@
 import "dotenv/config";
 import express from "express";
-
+import cors from "cors";
 import paymentRoutes from "./routes/paymentRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -13,9 +13,15 @@ import orderRoutes from "./routes/orderRoutes.js";
 
 
 const app = express();
+app.use(cors({
+  origin: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
 
-
-
+app.get("/cors-test", (req, res) => {
+  res.json({ message: "CORS middleware reached" });
+});
 
 app.use(
   "/payments/webhook",
