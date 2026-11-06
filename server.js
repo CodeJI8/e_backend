@@ -9,6 +9,7 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import aiRoutes from "./routes/aiRoutes.js";
 
 
 
@@ -44,6 +45,7 @@ app.use("/categories", categoryRoutes);
 app.use("/products", productRoutes);
 app.use("/carts", cartRoutes);
 app.use("/orders", orderRoutes);       //orders
+app.use("/ai", aiRoutes);  //ai
 
 
 
